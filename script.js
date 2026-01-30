@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Countdown Timer
-    const weddingDate = new Date('2024-09-29T16:00:00').getTime();
+    const weddingDate = new Date('2026-04-04T16:00:00').getTime();
     const circumference = 2 * Math.PI * 85;
 
     function updateCountdown() {
