@@ -26,32 +26,18 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--paper-bg);
     color: var(--text-dark);
     overflow-x: hidden;
     line-height: 1.6;
     
-    /* Paper texture background */
-    background-image: 
-        /* Noise texture for paper grain */
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E"),
-        /* Subtle fiber pattern */
-        repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(139, 115, 85, 0.015) 2px,
-            rgba(139, 115, 85, 0.015) 4px
-        ),
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 2px,
-            rgba(139, 115, 85, 0.015) 2px,
-            rgba(139, 115, 85, 0.015) 4px
-        ),
-        /* Base paper color gradient */
-        linear-gradient(135deg, #f4ede3 0%, #faf7f2 50%, #f0e8db 100%);
+    /* Main background image */
+    background-color: var(--paper-bg);
+    background-image:
+        linear-gradient(135deg, rgba(244, 237, 227, 0.72) 0%, rgba(250, 247, 242, 0.68) 50%, rgba(240, 232, 219, 0.72) 100%),
+        url('Images/all.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
 }
 
@@ -1249,6 +1235,61 @@ body {
     transform: scale(1.15);
 }
 
+/* Dress-code palette (extended, with labels) */
+.color-palette-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.color-chip {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 16px;
+    padding: 14px 12px;
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.color-chip:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.color-chip .color-swatch {
+    width: 52px;
+    height: 52px;
+    background: var(--swatch, #ddd);
+    position: relative;
+}
+
+.color-chip .color-swatch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.color-chip.is-dark .color-swatch::after {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.color-label {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    color: var(--text-dark);
+    text-align: center;
+    line-height: 1.25;
+}
+
 /* Footer */
 .footer {
     background: var(--text-dark);
@@ -1638,6 +1679,19 @@ body {
     .color-swatch {
         width: 50px;
         height: 50px;
+    }
+
+    .color-palette-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .color-chip {
+        padding: 12px 10px;
+    }
+
+    .color-label {
+        font-size: 11px;
     }
 
     .footer {
